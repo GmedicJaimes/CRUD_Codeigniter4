@@ -16,7 +16,7 @@ class App extends BaseConfig
    *
    *    http://example.com/
    */
-  public string $baseURL = 'http://localhost/framework_ci4/public/';
+  public string $baseURL = 'http://localhost/CRUD_Codeigniter4/public/';
 
   /**
    * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
