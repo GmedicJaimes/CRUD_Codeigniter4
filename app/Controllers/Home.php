@@ -11,6 +11,6 @@ class Home extends BaseController
 
   public function libros(): string
   {
-    return view('libros/editar.php');
+    return view('libros/crear');
   }
 }
