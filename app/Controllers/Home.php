@@ -8,9 +8,4 @@ class Home extends BaseController
   {
     return view('welcome_message.php');
   }
-
-  public function libros(): string
-  {
-    return view('libros/crear');
-  }
 }
