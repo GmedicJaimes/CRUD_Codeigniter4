@@ -1,10 +1,11 @@
 <?= $cabecera ?>
-
-//? link para ir a otra vista
-//se usa dentro del href php, usando la funcion base_url, que se usa para obtener la url de mi sitio web, en este caso la usamos para apuntar a la rute 'crear'.
+<!-- {
+  //? link para ir a otra vista
+  //dentro del href se usa php, usando la funcion base_url, que se usa para obtener la url de mi sitio web, en este caso la usamos para apuntar a la ruta 'crear'.
+} -->
 <a href="<?= base_url('crear') ?>">Crear un libro</a>
 
-<table class="table table-light">
+<table class="table table-light ">
   <thead class="thead-light">
     <tr>
       <th>#</th>

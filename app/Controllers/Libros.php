@@ -11,11 +11,11 @@ class Libros extends Controller
   public function index()
   {
     //consultar la informacion
-    //se crea una nueva instancia de la clase libro
+    //se crea una nueva instancia de la clase libro, para poder usar la informacion de nuestro modelo
     $libro = new Libro();
 
     //se consulta la base de datos, para obtener todos los libros con el metodo findAll(), ordenados por el campo id, de forma ascendente y se almacena en el array $datos con la clave 'libros'
-    $datos['libros'] = $libro->orderBy('id', 'ASC')->findAll();
+    $datos['libros'] = $libro->orderBy('id', 'DESC')->findAll();
 
     //se agregan dos vistas, al array $datos, con las claves cabecera y pie. 
     $datos['cabecera'] = view('template/cabecera');
