@@ -1,5 +1,5 @@
 <?= $cabecera ?>
-Formulario de crear
+<h2 class="text-center text-primary">Formulario para crear libro</h2>
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Ingresar datos del libro</h5>
@@ -23,7 +23,7 @@ Formulario de crear
     </p>
   </div>
 </div>
-<a href="<?= base_url('listar')?>">Listar libros</a>
+<a href="<?= base_url('listar')?>"> Back</a>
 
 
 

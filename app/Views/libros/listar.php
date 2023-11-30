@@ -5,8 +5,8 @@
 } -->
 <a href="<?= base_url('crear') ?>">Crear un libro</a>
 
-<table class="table table-light ">
-  <thead class="thead-light">
+<table class="table table-light border ">
+  <thead class="thead-light text-center">
     <tr>
       <th>#</th>
       <th>Imagen</th>
@@ -16,7 +16,7 @@
 
     </tr>
   </thead>
-  <tbody>
+  <tbody class="text-center">
 
 
     <?php foreach ($libros as $libro) { ?>
