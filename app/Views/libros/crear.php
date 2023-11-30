@@ -18,7 +18,7 @@ Formulario de crear
           <label for="imagen">Imagen: </label>
           <input id="imagen" class="form-control-file" type="file" name="imagen">
         </div>
-        <button class="btn btn-success" type="submit">exitoso</button>
+        <button class="btn btn-success" type="submit">Guardar</button>
       </form>
     </p>
   </div>

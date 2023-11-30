@@ -21,7 +21,7 @@ class Libros extends Controller
     $datos['cabecera'] = view('template/cabecera');
     $datos['pie'] = view('template/piepagina');
 
-    //retorna una vista, llamda libros/listar y le paso el array $datos
+    //retorna una vista, llamada libros/listar y le paso el array $datos
     return view('libros/listar', $datos);
   }
 
@@ -62,7 +62,7 @@ class Libros extends Controller
       $libro->insert($datos);
     }
 
-    echo 'Ingresado a la BD';
+    echo "<script>alert('Ingresado a la BD');</script>";
   }
 
 
