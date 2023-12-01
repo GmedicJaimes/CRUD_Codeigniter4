@@ -15,7 +15,7 @@ class Libros extends Controller
     $libro = new Libro();
 
     //se consulta la base de datos, para obtener todos los libros con el metodo findAll(), ordenados por el campo id, de forma ascendente y se almacena en el array $datos con la clave 'libros'
-    $datos['libros'] = $libro->orderBy('id', 'DESC')->findAll();
+    $datos['libros'] = $libro->orderBy('id', 'asc')->findAll();
 
     //se agregan dos vistas, al array $datos, con las claves cabecera y pie. 
     $datos['cabecera'] = view('template/cabecera');
@@ -47,12 +47,12 @@ class Libros extends Controller
     if ($imagen = $this->request->getFile('imagen')) {
       //creo una nueva variable, y le indico que me asigne un nombre random al momento de guardarla
       $nuevoNombre = $imagen->getRandomName();
-      //indico, que al momento de guardar la imagen, la mueva a esa direccion
+      //indico, que al momento de guardar la imagen, la mueva a esa direccion.
       $imagen->move('../public/uploads/', $nuevoNombre);
 
       //array de valores guardados por el form
       $datos = [
-        //guardo en cada variable, el valor que recibo del form, de su input correspondiente
+        //guardo en cada clave, el valor que recibo del form, de su input correspondiente
         'nombre' => $this->request->getVar('nombre'),
         //guardo en la clave, lo recibido a traves de la solicitud que se hace por medio de $this->request y el getVar, lo usamos para obtener el valor de un parametro de la solicitud enviada por el form
         'autor' => $this->request->getVar('autor'),
@@ -63,14 +63,29 @@ class Libros extends Controller
       $libro->insert($datos);
     } 
 
-    echo "<script>alert('Ingresado a la BD');</script>";
+    return $this->response->redirect(site_url('/listar'));
   }
 
 
   public function borrar($id = null)
   {
 
+    //se crea una nueva instancia de libro, y ejecutamos una consulta SQL, para obtener los datos del libro con el 'id' proporcionado.
+    $libro = new Libro();
+    $datosLibro = $libro->where('id',$id)->first();
 
-    echo 'Borrar registro' . $id;
+    //borrado de la carpeta upload
+    //concatenamos la direccion donde esta la imagen, con la columna donde se encuentra la imagen en la tabla libros, de esta manera, elimina los datos de los dos lados.
+    $ruta = ('../public/uploads/' . $datosLibro['imagen']);
+
+    //eliminamos el archivo de imagen del libro utilizando la funcion unlink, que recibe como argumento la ruta del archivo a eliminar
+    unlink($ruta);
+
+
+    //buscamos el libro en la base de datos, proporcionando el id, y lo eliminamos con el metodo delete de la clase libro, pasandole el $id a eliminar
+    $libro->where('id',$id)->delete($id);
+
+    // retornamos una respuesta, donde redireccionamos a la URL /listar
+    return $this->response->redirect(site_url('/listar'));
   }
 }
