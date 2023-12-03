@@ -91,8 +91,8 @@ class Libros extends Controller
 
   public function editar($id = null)
   {
+    //se crea una nueva instancia de libro, y ejecutamos una consulta SQL, para obtener los datos del libro con el 'id' proporcionado.
     $libro = new Libro();
-
     $datos['libro'] = $libro->where('id',$id)->first();
 
     $datos['cabecera'] = view('template/cabecera');
@@ -117,6 +117,32 @@ class Libros extends Controller
     //funcion de php, para la modificacion de los datos, por medio del id seleccionado
     $libro->update($id,$datos);
 
+    //validacion de imagen, donde validamos que exista una imagen, de que sea un tipo de imagen, en este caso jpg, jpeg o png, y ademas que la imagen sea un tamaño maximo de 1024
+    $validate = $this->validate([
+      'imagen' => [
+        'uploaded[imagen]',
+        'mime_in[imagen,image/jpg,image/jpeg,image/png]',
+        'max_size[imagen,1024],'
+      ]
+      ]);
+      
+      //verificamos si la validación de arriba se llevo acabo o se ejecuto, pocredemos a realizar una validacion sobre si existe la imagen, para poder editarla, si es necesario.
+      if($validate){
+        if ($imagen = $this->request->getFile('imagen')) {
+          
+          $datosLibro = $libro->where('id',$id)->first();
+          
+          $ruta = ('../public/uploads/' . $datosLibro['imagen']);
+          unlink($ruta);
+
+
+          $nuevoNombre = $imagen->getRandomName();
+          $imagen->move('../public/uploads/', $nuevoNombre);
+    
+          $datos = ['imagen' => $nuevoNombre];
+          $libro->update($id,$datos);
+        } 
+      }
     return $this->response->redirect(site_url('/listar'));
   }
 }

@@ -25,7 +25,7 @@
       <tr>
         <td><?= $libro['id'] ?></td>
         <td>
-          <img class="img-thumbnail" src="<?= base_url()?>/uploads/<?= $libro['imagen']; ?>" width="150" alt="">
+          <img class="img-thumbnail" src="<?= base_url()?>/uploads/<?= $libro['imagen']; ?>" width="100" alt="">
         
         </td>
         <td><?= $libro['nombre'] ?></td>

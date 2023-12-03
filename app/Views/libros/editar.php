@@ -21,7 +21,7 @@
         <div class="form-group">
           <label for="imagen">Imagen: </label>
           <br/>
-          <img class="img-thumbnail" src="<?= base_url()?>/uploads/<?= $libro['imagen']; ?>" width="150" alt="">
+          <img class="img-thumbnail" src="<?= base_url()?>/uploads/<?= $libro['imagen']; ?>" width="100" alt="">
           <input id="imagen" class="form-control-file" type="file" name="imagen">
         </div>
         
