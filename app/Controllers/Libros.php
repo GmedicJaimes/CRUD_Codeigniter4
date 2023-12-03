@@ -88,4 +88,35 @@ class Libros extends Controller
     // retornamos una respuesta, donde redireccionamos a la URL /listar
     return $this->response->redirect(site_url('/listar'));
   }
+
+  public function editar($id = null)
+  {
+    $libro = new Libro();
+
+    $datos['libro'] = $libro->where('id',$id)->first();
+
+    $datos['cabecera'] = view('template/cabecera');
+    $datos['pie'] = view('template/piepagina');
+
+    return view('libros/editar', $datos);
+  }
+
+  public function actualizar()
+  {
+    $libro = new Libro();
+
+    //datos a modificar en la funcion actualizar.
+    $datos = [
+      'nombre' => $this->request->getVar('nombre'),
+      'autor' => $this->request->getVar('autor'),
+    ];
+    
+    //recepcion del id de la interfaz editar.
+    $id = $this->request->getVar('id');
+
+    //funcion de php, para la modificacion de los datos, por medio del id seleccionado
+    $libro->update($id,$datos);
+
+    return $this->response->redirect(site_url('/listar'));
+  }
 }
